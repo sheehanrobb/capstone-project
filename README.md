@@ -46,5 +46,5 @@ flowchart TD
     G -->|Dialogue with user|E
     F -->H[Save to Database]
 ```
-## H2 Tasks</h2>
+## H2 Tasks
 ## H2 Results and conclusions
