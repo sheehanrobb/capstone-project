@@ -30,5 +30,21 @@ I am an osteopath and part of being an osteopath is documenting our consultation
 -ACC billing integration
 
 ## H2 Designs, mockups, Flow Charts etc
+```mermaid
+flowchart TD
+    A[Note taking App for Osteopath and Physiotherapists] -->|to run along side cliniko or other patient management system|B
+    B{Input form}
+    B -->|Text to speech|Audio-Methods
+    Audio-Methods -->|Webspeech APi|AI
+    Audio-Methods -->|Record and Transcribe file|AI
+    Methods -->|Input form-tickboxes & text|AI
+    B -->|Click and type inputs|Methods
+    AI-->|Generates notes on the practitions inputs from consultation|E
+    AI -->|Generates a summary from previous notes| E[user]
+    E -->|Confirms information is correct| F[correct?] 
+    F -->G[incorrect]
+    G -->|Dialogue with user|E
+    F -->H[Save to Database]
+```
 ## H2 Tasks</h2>
 ## H2 Results and conclusions
