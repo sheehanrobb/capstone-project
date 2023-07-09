@@ -6,9 +6,10 @@ Capstone Project for completing Institute of Data and AUT Professional certifica
 I am an osteopath and part of being an osteopath is documenting our consultations with patients. Our software is good but I can't make treatment note templates how I want. Additionally there are no plugins that I can use to directly send exercise programs to patients for their rehab.
 
 ###  Objectives
+- I aim to create an easy to use application where Osteopath and Physiotherapists can easily document their consultations with less typing. I'm thinking a tick the boxes, speech to text, possible ai integration/autocomplete
 
 ###  Needs
-- I aim to create an easy to use application where Osteopath and Physiotherapists can easily document their consultations with less typing. I'm thinking a tick the boxes, speech to text, possible ai integration/autocomplete
+
 
 
 ###  Nice to haves
@@ -22,8 +23,17 @@ I am an osteopath and part of being an osteopath is documenting our consultation
   
 ##  Assumptions
 - anyone using this software has internet connection
+- if this project was deployed with real patient data, It would have to abide by healthcare and privacy law
 
 ##  User Stories and Requirements
+
+#Tech Stack
+-NextJS
+-Typescript
+-React
+-Express
+-mongoDB
+
 
 
 ##  Open Questions/out of scope
