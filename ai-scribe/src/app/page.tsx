@@ -5,7 +5,7 @@ import styles from './page.module.css'
 import Dictaphone from './components/speech'
 import Chat from "./components/chatBox";
 
-export const runtime = "edge"
+// export const runtime = "edge"
 
 export default function Home() {
   return (
