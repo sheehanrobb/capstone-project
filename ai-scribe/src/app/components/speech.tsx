@@ -13,7 +13,6 @@ SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 const Dictaphone = () => {
   const {
     transcript,
-    interimTranscript,
     finalTranscript,
     resetTranscript,
     listening,
@@ -34,9 +33,9 @@ const Dictaphone = () => {
         onTouchEnd={SpeechRecognition.stopListening}
         onMouseUp={SpeechRecognition.stopListening}
       >Hold to talk</button>
-      <p>{interimTranscript}</p>
-      <p>{finalTranscript}</p>
       <p>{transcript}</p>
+      <p>{finalTranscript}</p>
+      
     </div>
   );
 };

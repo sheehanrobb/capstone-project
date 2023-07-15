@@ -1,31 +1,39 @@
+
 import { Configuration, OpenAIApi } from 'openai'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
+import { NextResponse } from 'next/server'
 
-//Vercel recommends to run on the edge runtime
-// export const runtime = 'edge'
-
+//API connection
+ 
 const config = new Configuration({
-  organization: 'org-O8mSxa4OReFk9vXjyIO8xmjG',
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-  
+  apiKey: process.env.OPENAI_API_KEY,
 })
-
 const openai = new OpenAIApi(config)
  
-
+//API route
  
 export async function POST(req: Request) {
-  //extract the prompt from the request body
   const { prompt } = await req.json()
-
-  //request to OPENAI api based on the prompt
   const response = await openai.createCompletion({
     model: 'gpt-3.5-turbo',
     stream: true,
     temperature: 0.6,
-    prompt: 'What is Next.js?',
+    prompt: prompt,
   })
  
   const stream = OpenAIStream(response)
   return new StreamingTextResponse(stream)
+}
+
+ 
+
+export async function GET(request: Request) {
+  return new Response('Hello, Next.js!', {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
 }

@@ -16,7 +16,8 @@ export default function Home() {
 
           </Dictaphone>
           <Chat></Chat>
-        </div>
+          </div>
+        
         
     </main>
   )

@@ -1,11 +1,14 @@
 'use client'
  
 import { useChat } from 'ai/react'
+import React from 'react'
+import Dictaphone from './speech'
  
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/ai/chat"
   })
+  
  
   return (
     <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
