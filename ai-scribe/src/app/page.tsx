@@ -1,9 +1,10 @@
 'use client'
 import "regenerator-runtime/runtime.js";
+import "tailwindcss/tailwind.css"
 import Image from 'next/image'
 import styles from './page.module.css'
-import Dictaphone from './components/speech'
-import Chat from "./components/chatBox";
+import Dictaphone from './components/Dicataphone'
+import Chat from "./components/Chat";
 
 // export const runtime = "edge"
 
@@ -12,9 +13,7 @@ export default function Home() {
     <main >
     
         <div>
-          <Dictaphone>
-
-          </Dictaphone>
+         <Dictaphone></Dictaphone>
           <Chat></Chat>
           </div>
         
