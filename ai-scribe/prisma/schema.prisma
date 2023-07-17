@@ -9,3 +9,27 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Patient {
+ id String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastname String
+  consultations Consultation[]
+}
+model Consultation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  patientId String  @db.ObjectId
+  patient  Patient @relation(fields: [patientId], references: [id])
+  seenOn DateTime
+  transcript Transcript[]
+  summary String
+}
+
+model Transcript {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  consultationId String  @db.ObjectId
+  consultation  Consultation @relation(fields: [consultationId], references: [id])
+  role String
+  message String
+  createdAt DateTime @default(now())  
+}
