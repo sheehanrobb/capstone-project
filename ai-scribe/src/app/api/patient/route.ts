@@ -1,0 +1,1 @@
+//Patient index, returns list of all patients which will correspond to a dropdown list on the frontend
