@@ -3,10 +3,11 @@
 import { useChat } from 'ai/react'
 import React from 'react'
 import Dictaphone from './Dicataphone'
+
  
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: "/api/chat"
+    api: "/api/consultation/${consultationId}/chat"
   })
   
  
@@ -26,7 +27,9 @@ export default function Chat() {
             className="fixed w-full max-w-md bottom-0 border border-gray-300 rounded mb-8 shadow-xl p-2"
             value={input}
             onChange={handleInputChange}
-          />
+            
+          >
+          </input>
         </label>
         <button type="submit">Send</button>
       </form>

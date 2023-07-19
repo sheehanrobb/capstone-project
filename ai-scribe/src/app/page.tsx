@@ -1,6 +1,6 @@
 'use client'
 import "regenerator-runtime/runtime.js";
-import "tailwindcss/tailwind.css"
+
 import Image from 'next/image'
 import styles from './page.module.css'
 import Dictaphone from './components/Dicataphone'
@@ -15,6 +15,7 @@ export default function Home() {
         <div>
          <Dictaphone></Dictaphone>
           <Chat></Chat>
+          
           </div>
         
         
