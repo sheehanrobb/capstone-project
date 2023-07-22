@@ -33,7 +33,8 @@ const Dictaphone:FC = () => {
         onMouseUp={SpeechRecognition.stopListening}
       >Hold to talk</button>
       <p>{transcript}</p>
-     
+      <button onClick={resetTranscript}>Reset</button>
+      
       
     </div>
   );

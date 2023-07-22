@@ -6,16 +6,16 @@ import styles from './page.module.css'
 import Dictaphone from './components/Dicataphone'
 import Chat from "./components/Chat";
 
-// export const runtime = "edge"
+
 
 export default function Home() {
   return (
     <main >
     
         <div>
-         <Dictaphone></Dictaphone>
+         {/* <Dictaphone></Dictaphone>
           <Chat></Chat>
-          
+           */}
           </div>
         
         

@@ -1,6 +1,6 @@
 //Patient index, returns list of all patients which will correspond to a dropdown list on the frontend
 //url: http://localhost:3000/api/patient
-//this works and returnS an empty array - no patient database
+//this works
 import prisma from "../../../lib/prismadb";
 import { NextResponse } from "next/server";
 

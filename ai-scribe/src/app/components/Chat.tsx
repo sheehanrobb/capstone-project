@@ -1,13 +1,13 @@
 'use client'
  
 import { useChat } from 'ai/react'
-import React from 'react'
+import React, { FC } from 'react'
 import Dictaphone from './Dicataphone'
-
  
-export default function Chat() {
+export default function Chat({consultId}: {consultId: string}) {
+  
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: "/api/consultation/${consultationId}/chat"
+    api:`/api/consultation/${consultId}/chat`,
   })
   
  
@@ -30,8 +30,9 @@ export default function Chat() {
             
           >
           </input>
+          <button type="submit" className='blue-800'>Send</button>
         </label>
-        <button type="submit">Send</button>
+        
       </form>
     </div>
   )
