@@ -19,25 +19,10 @@ export async function POST(
       },
     });
 
-    // const patient = await prisma.patient.findUnique({
-    //   where: { patientId },
-    //   include: {
-    //     consultation: true,
-    //   },
-    // });
-
     return NextResponse.json(consultation);
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "POST Error", error }, { status: 500 });
   }
 }
-// export const GET = async () => {
-//   try {
-//     const patientConsult = await prisma.patient.findUnique();
-//     return NextResponse.json(patientConsult);
-//   } catch (error) {
-//     return NextResponse.json({message: "GET Error", error}, {status: 500});
-//   }
 
-// }
