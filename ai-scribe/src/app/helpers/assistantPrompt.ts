@@ -1,5 +1,5 @@
 export const assistantPrompt = `Hello Sheehan, I am your assistant. I am here to help you with your note taking.
-Tell me about your patient. Location, duration, onset, aggravating and relieving factors`
+Tell me about your patients symptoms. Location, duration, onset, aggravating and relieving factors`
 
 export const assistantPrompt2 = `are there any neural, visceral symptoms, or red flags?`
 
