@@ -13,9 +13,7 @@ export default function Home() {
     <main >
     
         <div>
-         {/* <Dictaphone></Dictaphone>
-          <Chat></Chat>
-           */}
+         <h1 className="text-2xl">Hello Sheehan</h1>
           </div>
         
         

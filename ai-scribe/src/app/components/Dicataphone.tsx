@@ -2,7 +2,7 @@ import {FC} from 'react'
 import React from 'react';
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
+import "regenerator-runtime/runtime";
 
 
 const speechlyAppId: string|undefined = process.env.NEXT_PUBLIC_SPEECHLY_APP_ID
@@ -24,7 +24,7 @@ const Dictaphone:FC = () => {
   }
 
   return (
-    <div>
+    <div className='slate-700 rounded flex'>
       <p>Microphone: {listening ? 'on' : 'off'}</p>
       <button className='bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded'
         onTouchStart={startListening}
@@ -34,6 +34,7 @@ const Dictaphone:FC = () => {
       >Hold to talk</button>
       <p>{transcript}</p>
       <button onClick={resetTranscript}>Reset</button>
+      <img src="microphone.png" alt="microphone" width={12} height={14}></img>
       
       
     </div>

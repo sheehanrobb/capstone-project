@@ -5,6 +5,7 @@ import useSWR from "swr";
 import Chat from "../../components/Chat";
 import { useParams } from "next/navigation";
 import { POST } from "@/app/api/consultation/[consultId]/chat/route";
+import "regenerator-runtime/runtime.js"
 
 //this page is for the consultation. It will display the patient's name, the date of the consultation
 //the chat box, and the consultation summary
@@ -33,9 +34,22 @@ export default function page() {
         
     }
 
+    const handleFinalise = () => {
+      fetch(`/api/consultation/${consultId}/finalise`,
+      {method: "POST"})
+      .then((response) =>
+        response.json()
+      )
+      .then((data) => {
+        console.log(data);
+      })
+    }
+
     if (!data) return (
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
         <h1 className="text-2xl">Inital Consultation</h1>
+        <button type="button" className="fixed pink-800" onClick={handleFinalise}>Final</button>
+
         <Chat consultId={consultId} />
         
         </div>
