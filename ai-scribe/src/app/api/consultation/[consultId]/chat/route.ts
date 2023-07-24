@@ -16,8 +16,7 @@ import { assistantPrompt,
   assistantPrompt12,
   assistantPrompt13,
   assistantPrompt14  } from '@/app/helpers/assistantPrompt';
-import { request } from 'http';
-import { NextResponse } from 'next/server';
+
 
 
 // for configuration of the openai api
@@ -40,31 +39,31 @@ export async function POST(req: Request, {params}: {params: {consultId: string}}
     messages: [{role: "system", content: `${chatbotPrompt}`},
                 {role: "assistant", content: `${assistantPrompt}`},
                 {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt2}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt3}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt4}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt5}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt6}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt7}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt8}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt9}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt10}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt11}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt12}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt13}`},
-                // {role: "user", content: `${prompt}`},
-                // {role: "assistant", content: `${assistantPrompt14}`},
+                {role: "assistant", content: `${assistantPrompt2}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt3}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt4}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt5}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt6}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt7}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt8}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt9}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt10}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt11}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt12}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt13}`},
+                {role: "user", content: `${prompt}`},
+                {role: "assistant", content: `${assistantPrompt14}`},
               
                 ],
   })
@@ -72,34 +71,34 @@ export async function POST(req: Request, {params}: {params: {consultId: string}}
   console.log(response);
 
 //stream the response from the openai api, and save the response to the database
- async function POST(req: Request) {
-  // const { transcript } = await req.json()
+//  async function POST(req: Request) {
+//   // const { transcript } = await req.json()
 
-  const saveTranscriptionToDatabase = async (transcript: string) => {
-    try {
-    await prisma.transcript.create({
-      data: {
-        consultationId: params.consultId,
-        role: "user",
-        message: transcript,
-        createdAt: new Date(),
-        }
-      })} catch (error: any) {
-          console.error("Error saving", error)
-        }
-    }
-  }
-  const saveCompletionToDatabase = async (completion: string) => {
-    try {
-    await prisma.transcript.create({
-      data: {
-        role: "assistant",
-        message: completion,
-        createdAt: new Date(),
-        }
-      })} catch (error: any) {
-        console.error("Error saving", error)
-      }
+//   const saveTranscriptionToDatabase = async (transcript: string) => {
+//     try {
+//     await prisma.transcript.create({
+//       data: {
+//         consultationId: params.consultId,
+//         role: "user",
+//         message: transcript,
+//         createdAt: new Date(),
+//         }
+//       })} catch (error: any) {
+//           console.error("Error saving", error)
+//         }
+//     }
+//   }
+//   const saveCompletionToDatabase = async (completion: string) => {
+//     try {
+//     await prisma.transcript.create({
+//       data: {
+//         role: "assistant",
+//         message: completion,
+//         createdAt: new Date(),
+//         }
+//       })} catch (error: any) {
+//         console.error("Error saving", error)
+//       }
     
   
 
@@ -107,7 +106,15 @@ export async function POST(req: Request, {params}: {params: {consultId: string}}
   const stream = OpenAIStream(response, {
   // this callback is called when the stream starts
     onStart: async ()  => {
-      await saveTranscriptionToDatabase(transcript)
+      // await saveTranscriptionToDatabase(transcript)
+      prisma.$connect()
+      prisma.transcript.create({
+        data: {
+          role: "User",
+          message: "",
+          createdAt: new Date(),
+          }
+        })
       
       console.log("started streaming")
 
@@ -121,11 +128,19 @@ export async function POST(req: Request, {params}: {params: {consultId: string}}
     onCompletion: async(completion: string) => {
       // this callback is called when the stream completes
       // you can use this to save the final completion to the database
-      await saveCompletionToDatabase(completion)
-     
+      // await saveCompletionToDatabase(completion)
+
+      prisma.transcript.create({
+        data: {
+          role: "Assistant",
+          message: "",
+          createdAt: new Date(),
+          }
+        })
+      console.log("completed streaming")
     },
       // save to database here
   });
   return new StreamingTextResponse(stream);
 }
-  }
+  // }
