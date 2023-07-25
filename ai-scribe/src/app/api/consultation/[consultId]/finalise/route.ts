@@ -33,24 +33,28 @@ export async function POST(
 
   const transcripts = await prisma.transcript.findMany({
     where: {
-        consultation: {
-            id: params.consultId
-        } 
-    }
-  })
+      consultation: {
+        id: params.consultId,
+      },
+    },
+  });
 
-  console.log("consultId: ", params.consultId);
-  console.log("transcripts", transcripts);
+  console.log("finalise consultId: ", params.consultId);
 
-  const messages = transcripts.map((transcript) => ({ role: transcript.role, content: transcript.message }))
+  const messages = transcripts.map((transcript) => ({
+    role: transcript.role,
+    content: transcript.message,
+  }));
 
   const chatMessages = [
     { role: "system", content: `${chatbotPrompt}` },
     ...messages,
-    { role: "system", content: "Summarize the above consultation notes for the next consultation, and provide a detailed exercise plan in table format." }
+    {
+      role: "system",
+      content:
+        "Summarize the above consultation notes for the next consultation, and provide a detailed exercise plan in table format.",
+    },
   ];
-
-  console.log("chatMessage: ", chatMessages);
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo", // gpt-3.5-turbo-16k or gpt-4 (8k of context)
@@ -61,27 +65,19 @@ export async function POST(
 
   const stream = OpenAIStream(response, {
     onStart: async () => {
-      console.log("started streaming");
+      console.log("started streaming finalise");
     },
-
     onToken: async (token) => {},
     onCompletion: async (completion: string) => {
-      // this callback is called when the stream completes
-      // you can use this to save the final completion to the database
-      // instead of writing to transcript, write to summary in consultation
-    //   const transcript = await prisma.transcript.create({
-    //     data: {
-    //       consultation: {
-    //         connect: {
-    //           id: params.consultId
-    //         }
-    //       },
-    //       role: "assistant",
-    //       message: completion,
-    //       createdAt: new Date(),
-    //     },
-    //   });
-      console.log("assistant transcript: ", completion);
+      const result = await prisma.consultation.update({
+        where: {
+          id: params.consultId,
+        },
+        data: {
+          summary: completion,
+        },
+      });
+      console.log("save summary for consult result ", result)
     },
   });
   return new StreamingTextResponse(stream);

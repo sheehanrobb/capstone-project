@@ -28,14 +28,12 @@ export async function POST(
   */
   const { messages } = await req.json();
 
-  console.log("consultId: ", params.consultId);
+  console.log("chat consultId: ", params.consultId);
 
   const chatMessages = [
     { role: "system", content: `${chatbotPrompt}` },
     ...messages
   ];
-
-  console.log("chatMessage: ", chatMessages);
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo", // gpt-3.5-turbo-16k or gpt-4 (8k of context)
@@ -61,9 +59,7 @@ export async function POST(
           createdAt: new Date(),
         },
       });
-      console.log("user transcript: ", transcript)
-
-      console.log("started streaming");
+      console.log("started streaming chat");
     },
 
     onToken: async (token) => {
@@ -86,7 +82,7 @@ export async function POST(
           createdAt: new Date(),
         },
       });
-      console.log("assistant transcript: ", transcript);
+      console.log("saved assistant transcript for consult ", params.consultId)
     },
   });
   return new StreamingTextResponse(stream);
