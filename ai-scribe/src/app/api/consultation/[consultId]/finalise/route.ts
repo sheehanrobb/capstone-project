@@ -47,7 +47,7 @@ export async function POST(
   const chatMessages = [
     { role: "system", content: `${chatbotPrompt}` },
     ...messages,
-    { role: "system", content: "Summerize the above consultation notes for the next consultation, and provide a detailed exercise plan in table format." }
+    { role: "system", content: "Summarize the above consultation notes for the next consultation, and provide a detailed exercise plan in table format." }
   ];
 
   console.log("chatMessage: ", chatMessages);

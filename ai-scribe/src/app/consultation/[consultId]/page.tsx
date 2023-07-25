@@ -5,7 +5,11 @@ import useSWR from "swr";
 import Chat from "../../components/Chat";
 import { useParams } from "next/navigation";
 import { POST } from "@/app/api/consultation/[consultId]/chat/route";
-import "regenerator-runtime/runtime.js"
+import "regenerator-runtime/runtime";
+import SpeechlyDictaphone from "../../components/SpeechlyDictaphone";
+import { SpeechProvider } from "@speechly/react-client";
+
+// import "regenerator-runtime/"
 
 //this page is for the consultation. It will display the patient's name, the date of the consultation
 //the chat box, and the consultation summary
@@ -44,15 +48,36 @@ export default function page() {
         console.log(data);
       })
     }
+    
+  
+//handles summary, have to write backend APi for this
+    // const handleSummary = () => {
+    //   fetch(`/api/consultation/${consultId}/finalise`,
+    //   {method: "GET"})
+    //   .then((response) => 
+    //     response.json()
+    //     )
+    //     .then((data) => {
+    //       console.log(data);
+    //     })
+    // }
 
     if (!data) return (
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-        <h1 className="text-2xl">Inital Consultation</h1>
-        <button type="button" className="fixed pink-800" onClick={handleFinalise}>Final</button>
-
-        <Chat consultId={consultId} />
+      <div className="max-w-3x1 mx-auto min-w-800 bg-white rounded-xl shadow-2xl lg:max-w-2xl space-x-4 p-2 h-screen">
+        <h1 className="text-2xl space-x-4 text-slate-800 p-6">Inital Consultation</h1>
+        {/* <div className="text-slate-800">Patient Name</div>
+        <div className="text-slate-800">Date</div>
+        <div className="text-slate-800">Time</div> */}
+        <button className="bg-slate-700 hover:bg-slate-500 text-white font-bold py-4 px-8 rounded" onClick={handleFinalise}>Finalise Notes</button>
         
-        </div>
+          <Chat consultId={consultId} />
+          <SpeechProvider appId={process.env.NEXT_PUBLIC_SPEECHLY_APP_ID}
+            debug 
+            logSegments>
+            <SpeechlyDictaphone>
+              </SpeechlyDictaphone>
+          </SpeechProvider>
+      </div>
     )
 
     
@@ -69,7 +94,7 @@ export default function page() {
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
       <h1 className="text-2xl">patient name</h1>
       <div>{data.seenOn}</div>
-      <div>Consultation Summary</div>
+      {/* <div>{handleSummary}</div> */}
 
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
         <div>
