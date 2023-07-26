@@ -62,7 +62,7 @@ flowchart TD
     F -->H[Save to Database]
     H -->I[Presents summary of notes to user]
 ```
-```gantt
+```mermaid
 gantt
     title AI Scribe
     dateFormat  2023-07-08
