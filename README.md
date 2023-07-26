@@ -62,6 +62,29 @@ flowchart TD
     F -->H[Save to Database]
     H -->I[Presents summary of notes to user]
 ```
+```gantt
+gantt
+    title AI Scribe
+    dateFormat  2023-07-08
+    section Planning/Presenting
+
+    Documentation           :a1, 2023-7-8, 18d
+    Planning                :a1, 2023-7-8, 3d
+    Presention              :a1, 2023-7-22, 3d 
+
+    section Backend
+    routes      :2023-7-11  , 8d
+    api         :2023-7-13 , 4d
+    database CRUD :2023-7-14 , 10d
+
+    section Frontend
+    chatbox :2023-7-15, 2d
+    dictaphone: 2023-7-18, 3d
+    dropdown: 2023-7-16, 2d
+    others: 2023-7-18, 6d
+    styling: 2023-7-15, 10d
+
+```
 ## H2 Tasks
 ## H2 Results and conclusions
 
