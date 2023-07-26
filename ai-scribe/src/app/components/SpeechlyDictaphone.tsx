@@ -36,15 +36,15 @@ export default function SpeechlyDictaphone({
   };
 
   return (
-    <div className="bg-slate-200">
+    <div>
       <button
         onClick={handleClick}
-        className=" text-white p-3 inline-flex rounded full bg-slate-700 hover:bg-slate-500 font-bold py-4 px-8"
+        className=" text-white  flex-shrink inline-flex rounded-full bg-slate-700 hover:bg-indigo-500 font-bold py-5 px-5 fixed bottom-5 right-20"
       >
         {listening ? (
-          <IoMicCircleSharp className="animate-ping inline-flex rounded-full" />
+          <IoMicCircleSharp className="animate-ping inline-flex w-10 h-10 rounded-full shadow-md" />
         ) : (
-          <IoMicOffCircle className="inline-flex rounded-full" />
+          <IoMicOffCircle className=" inline-flex rounded-full w-10 h-10 shadow-md"  />
         )}
       </button>
     </div>

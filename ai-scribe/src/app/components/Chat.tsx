@@ -22,7 +22,7 @@ export default function Chat({ consultId }: { consultId: string }) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
+    <div className="mx-auto w-full max-w-1xl py-24 flex flex-col stretch">
       {messages.map((m) => (
         <div key={m.id}>
           {m.role === "user" ? (

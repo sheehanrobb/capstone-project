@@ -90,7 +90,7 @@ export default function page() {
         </Transition>
       </div>
     </Listbox>
-    <button className="bg-slate-700 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded" type="button" onClick={handleStartConsultation}>Start Consultation</button>
+    <button className="bg-slate-700 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded" type="button" onClick={handleStartConsultation}>Start Consultation</button>
     </div>
     )
      }

@@ -17,8 +17,10 @@ export default function Home() {
   return (
     <main>
       <div>
-        <h1 className="text-2xl">Hello Sheehan</h1>
-        <p className="text-xl">Welcome to your dashboard</p>
+        <img src="AI.jpeg" alt="ai abstract" className='cover absolute flex-auto'></img>
+        <h1 className="text-white text-right text-5xl font-serif absolute right-8 top-20">Welcome Sheehan</h1>
+        <p className="text-xl text-white">Welcome to your dashboard</p>
+
         <div className="right-4 absolute">
         
         </div>
