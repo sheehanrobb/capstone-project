@@ -22,7 +22,7 @@ export default function Chat({ consultId }: { consultId: string }) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-1xl py-24 flex flex-col stretch">
+    <div className="mx-auto w-full  flex-shrink max-w-2xl py-24 flex flex-col stretch">
       {messages.map((m) => (
         <div key={m.id}>
           {m.role === "user" ? (
@@ -45,7 +45,7 @@ export default function Chat({ consultId }: { consultId: string }) {
           Say something...
           <input
             key="input"
-            className="fixed align-center flex w-full max-w-md bottom-0 border border-gray-300 rounded mb-8 shadow-xl p-2"
+            className="fixed align-middle flex-shrink w-full max-w-md bottom-0 border border-gray-300 rounded mb-8 shadow-xl p-2"
             type="text"
             value={input}
             onChange={handleInputChange}
