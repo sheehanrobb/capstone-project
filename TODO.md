@@ -10,6 +10,9 @@
 - Plan of how and what needs to be maintained
 - Rename
 - Create a list of exercises/exercise protocols. Will exercises be based on diagnosis.
+- Logging? Sentry? 
+- Think about proccesses I can automate. How best can I utilise GH Actions and AI
+- Set up AI context, skills etc
 
 
 # Main functionality (MVP)
